@@ -17,33 +17,25 @@ jobs:
   include:
     - stage: "API Feed"
       name: "API Feed"
-      script:
-        - docker --version 
-        - docker build -t udagram-api-feedv2 ./udagram-api-feedv2
+      script: docker build -t udagram-api-feedv2 ./udagram-api-feedv2
       after_success:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker push antonander/udagram-api-feedv2
     - stage: "API User"
       name: "API User"
-      script:
-        - docker --version 
-        - docker build -t udagram-api-userv2 ./udagram-api-userv2
+      script: docker build -t udagram-api-userv2 ./udagram-api-userv2
       after_success:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker push antonander/udagram-api-userv2
     - stage: "ReverseProxy"
       name: "ReverseProxy"
-      script:
-        - docker --version 
-        - docker build -t reverseproxyv2 ./reverseproxyv2
+      script: docker build -t reverseproxyv2 ./reverseproxyv2
       after_success:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker push antonander/reverseproxyv2
     - stage: "Frontend"
       name: "Frontend"
-      script:
-        - docker --version 
-        - docker build -t udagram-frontendv2 ./udagram-frontendv2
+      script: docker build -t udagram-frontendv2 ./udagram-frontendv2
       after_success:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker push antonander/udagram-frontendv2
