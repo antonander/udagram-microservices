@@ -37,7 +37,7 @@ jobs:
       name: "ReverseProxy"
       script:
         - docker --version 
-        - docker build -t reverseproxyv2 ./reverseproxy
+        - docker build -t reverseproxyv2 ./udagram-reverseproxy
         - docker tag reverseproxyv2 antonander/reverseproxyv2:v2
       after_success:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
