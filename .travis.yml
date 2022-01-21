@@ -44,4 +44,5 @@ script:
   - docker tag udagram-frontendv2 antonander/udagram-frontendv2:v2
 
 after_success:
- - docker push antonander/udagram-frontendv2
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push antonander/udagram-frontendv2
