@@ -1,22 +1,28 @@
-language: minimal
+language: node_js
+node_js:
+  - 13
 
-services: docker
+services:
+  - docker
 
-env:
-  - DOCKER_COMPOSE_VERSION=1.23.2
-
-before_install:
-  - docker -v && docker-compose -v
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
-  - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-  - chmod +x ./kubectl
-  - sudo mv ./kubectl /usr/local/bin/kubectl
-
+# Pre-testing installs
 install:
-  - docker-compose -f docker-compose-build.yaml build --parallel
+  - echo "nothing needs to be installed"
+
+# Scripts to be run such as tests
+before_script:
+  - echo "no tests"
+
+script:
+  - docker --version 
+  - docker build -t udagram-api-userv2 ./udagram-api-user
+  - docker tag udagram-api-userv2 antonander/udagram-api-userv2:v2
+  - docker build -t udagram-api-feedv2 ./udagram-api-feed
+  - docker tag udagram-api-feedv2 antonander/udagram-api-feedv2:v2
+  - docker build -t reverseproxyv2 ./udagram-reverseproxy
+  - docker tag reverseproxyv2 antonander/reverseproxyv2:v2
+  - docker build -t udagram-frontendv2 ./udagram-frontend
+  - docker tag udagram-frontendv2 antonander/udagram-frontendv2:v2
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
