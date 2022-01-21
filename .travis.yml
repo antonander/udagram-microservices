@@ -19,8 +19,8 @@ jobs:
       name: "API Feed"
       script:
         - docker --version 
-        - docker tag udagram-api-feedv2 antonander/udagram-api-feedv2:v2
         - docker build -t udagram-api-feedv2 ./udagram-api-feedv2
+        - docker tag udagram-api-feedv2 antonander/udagram-api-feedv2:v2
       after_success:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker push antonander/udagram-api-feedv2
@@ -28,8 +28,8 @@ jobs:
       name: "API User"
       script:
         - docker --version 
-        - docker tag udagram-api-userv2 antonander/udagram-api-userv2:v2
         - docker build -t udagram-api-userv2 ./udagram-api-userv2
+        - docker tag udagram-api-userv2 antonander/udagram-api-userv2:v2
       after_success:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker push antonander/udagram-api-userv2
@@ -37,8 +37,8 @@ jobs:
       name: "ReverseProxy"
       script:
         - docker --version 
-        - docker tag reverseproxyv2 antonander/reverseproxyv2:v2
         - docker build -t reverseproxyv2 ./reverseproxyv2
+        - docker tag reverseproxyv2 antonander/reverseproxyv2:v2
       after_success:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker push antonander/reverseproxyv2
@@ -46,8 +46,8 @@ jobs:
       name: "Frontend"
       script:
         - docker --version 
-        - docker tag udagram-frontendv2 antonander/udagram-frontendv2:v2
         - docker build -t udagram-frontendv2 ./udagram-frontendv2
+        - docker tag udagram-frontendv2 antonander/udagram-frontendv2:v2
       after_success:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker push antonander/udagram-frontendv2
