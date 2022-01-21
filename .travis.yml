@@ -15,41 +15,14 @@ before_script:
 
 jobs:
   include:
-    - stage: "API Feed"
-      name: "API Feed"
-      script:
-        - docker --version 
-        - docker build -t udagram-api-feedv2 ./udagram-api-feed
-        - docker tag udagram-api-feedv2 antonander/udagram-api-feedv2:v2
-      after_success:
-        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker push antonander/udagram-api-feedv2
     - stage: "API User"
       name: "API User"
       script:
         - docker --version 
         - docker build -t udagram-api-userv2 ./udagram-api-user
-        - docker tag udagram-api-userv2 antonander/udagram-api-userv2:v2
+        - docker tag udagram-api-userv2 antonander/udagram-api-userv2:latest
       after_success:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker push antonander/udagram-api-userv2
-    - stage: "ReverseProxy"
-      name: "ReverseProxy"
-      script:
-        - docker --version 
-        - docker build -t reverseproxyv2 ./udagram-reverseproxy
-        - docker tag reverseproxyv2 antonander/reverseproxyv2:v2
-      after_success:
-        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker push antonander/reverseproxyv2
-    - stage: "Frontend"
-      name: "Frontend"
-      script:
-        - docker --version 
-        - docker build -t udagram-frontendv2 ./udagram-frontend
-        - docker tag udagram-frontendv2 antonander/udagram-frontendv2:v2
-      after_success:
-        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker push antonander/udagram-frontendv2
 
 
