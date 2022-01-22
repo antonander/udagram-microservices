@@ -1,12 +1,13 @@
 apiVersion: v1
 kind: Service
-metadata:
-  name: udagram-api-userv2-app
+metadata: 
+  name: udagram-api-feedv2-app
   labels:
-    run: udagram-api-userv2-app
+    run: udagram-api-feedv2-app
 spec:
   ports:
-  - port: 80
-    protocol: TCP
+  - name: "8080"
+    port: 8080
+    targetPort: 8080
   selector:
-    run: udagram-api-userv2-app
+    run: udagram-api-feedv2-app
