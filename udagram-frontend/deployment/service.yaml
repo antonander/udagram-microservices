@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: udagram-frontendv2-app
+  labels:
+    run: udagram-frontendv2-app
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+  selector:
+    run: udagram-frontendv2-app

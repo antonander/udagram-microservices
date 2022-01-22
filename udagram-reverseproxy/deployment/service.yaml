@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: reverseproxyv2-app
+  labels:
+    run: reverseproxyv2-app
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+  selector:
+    run: reverseproxyv2-app
