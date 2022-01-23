@@ -18,14 +18,12 @@ spec:
       - image: antonander/udagram-api-feedv2
         name: udagram-api-feedv2
         imagePullPolicy: Always  
-        ports:
-        - containerPort: 80
         resources:
           requests:
             memory: "64Mi"
             cpu: "250m"
           limits:
-            memory: "1024Mi"
+            memory: "2048Mi"
             cpu: "500m"                  
         env:
         - name: URL

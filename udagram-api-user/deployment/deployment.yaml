@@ -5,7 +5,7 @@ metadata:
   labels:
     app: udagram-api-userv2-app
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: udagram-api-userv2-app
@@ -18,14 +18,12 @@ spec:
       - image: antonander/udagram-api-userv2
         name: udagram-api-userv2
         imagePullPolicy: Always  
-        ports:
-        - containerPort: 80
         resources:
           requests:
             memory: "64Mi"
             cpu: "250m"
           limits:
-            memory: "1024Mi"
+            memory: "2048Mi"
             cpu: "500m"                  
         env:
         - name: URL

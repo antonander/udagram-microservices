@@ -1,13 +1,14 @@
 apiVersion: v1
 kind: Service
-metadata: 
-  name: udagram-api-feedv2-app
+metadata:
+  name: reverseproxyv2-app
   labels:
-    service: udagram-api-feedv2-app
+    app: reverseproxyv2-app
 spec:
+  type: LoadBalancer
+  selector:
+    app: reverseproxyv2-app
   ports:
   - name: "8080"
     port: 8080
     targetPort: 8080
-  selector:
-    service: udagram-api-feedv2-app

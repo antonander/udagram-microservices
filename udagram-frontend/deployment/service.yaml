@@ -3,10 +3,12 @@ kind: Service
 metadata:
   name: udagram-frontendv2-app
   labels:
-    run: udagram-frontendv2-app
+    app: udagram-frontendv2-app
 spec:
-  ports:
-  - port: 80
-    protocol: TCP
+  type: LoadBalancer
   selector:
-    run: udagram-frontendv2-app
+    app: udagram-frontendv2-app
+  ports:
+  - name: "8100"
+    port: 8100
+    targetPort: 8100

@@ -18,8 +18,6 @@ spec:
       - image: antonander/udagram-frontendv2
         name: udagram-frontendv2
         imagePullPolicy: Always  
-        ports:
-        - containerPort: 80
         resources:
           requests:
             memory: "64Mi"
